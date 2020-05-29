@@ -98,6 +98,19 @@ export class TableBasicExample {
     
   }
 
+  evaluate2 = (designation: any, newFormula?:string) : void => {
+    let nextToDo: any[] = [];
+
+  	const expression = newFormula ? 
+    `${designation.code} = ${newFormula}` : 
+    designation.formula
+
+    this.parser.evaluate(expression);
+
+    
+    
+  }
+
   refresh = () => {
     console.log(this.evaluate(this.shuffle(this.dataSource)))
   }
@@ -116,7 +129,7 @@ export class TableBasicExample {
 
   shuffle = (array: any[]) => {
     const shuffled = array.sort(() => Math.random() - 0.5);
-    return [...shuffled];
+    return shuffled;
   }
 }
 
