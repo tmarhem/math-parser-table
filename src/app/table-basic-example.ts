@@ -7,18 +7,43 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+const designations = [
+    {
+    code: 'V1',
+    formula: `V1`,
+    result: `Init`
+    },
+    {
+    code: 'V2',
+    formula: `V2`,
+    result: `Init`
+    },
+    {
+    code: 'V3',
+    formula: `V3 = V1 + 1`,
+    result: `Init`
+    },
+    {
+    code: 'V4',
+    formula: `V4 = V2 + 1`,
+    result: `Init`
+    },
+    {
+    code: 'V5',
+    formula: `V5 = V1 + V2`,
+    result: `Init`
+    },
+    {
+    code: 'V6',
+    formula: `V6 = V1 + V5`,
+    result: `Init`
+    },
+    {
+    code: 'V7',
+    formula: `V7 = V4 + V5`,
+    result: `Init`
+    },
+  ]
 
 /**
  * @title Basic use of `<table mat-table>`
@@ -29,8 +54,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: 'table-basic-example.html',
 })
 export class TableBasicExample {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['code', 'formula', 'result'];
+  dataSource = designations;
 }
 
 
