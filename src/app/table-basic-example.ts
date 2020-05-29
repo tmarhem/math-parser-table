@@ -10,39 +10,54 @@ export interface PeriodicElement {
 
 const designations = [
     {
-    code: 'V7',
-    formula: `V7 = V4 + V5`,
-    result: `Init`
-    },
-    {
     code: 'V1',
     formula: `V1 = 1`,
-    result: `Init`
+    result: `INIT`,
+    expected: '1',
+    expected2: '2',
+    
     },
     {
     code: 'V2',
     formula: `V2 = 1`,
-    result: `Init`
+    result: `INIT`,
+    expected: '1',
+    expected2: '1',
     },
     {
     code: 'V3',
     formula: `V3 = V1 + 1`,
-    result: `Init`
+    result: `INIT`,
+    expected: '2',
+    expected2: '3',
     },
     {
     code: 'V4',
     formula: `V4 = V2 + 1`,
-    result: `Init`
+    result: `INIT`,
+    expected: '2',
+    expected2: '2',
     },
     {
     code: 'V5',
     formula: `V5 = V1 + V2`,
-    result: `Init`
+    result: `INIT`,
+    expected: '2',
+    expected2: '3',
     },
     {
     code: 'V6',
-    formula: `V6 = V12 + V5`,
-    result: `Init`
+    formula: `V6 = V1 + V5`,
+    result: `INIT`,
+    expected: '3',
+    expected2: '5',
+    },
+    {
+    code: 'V7',
+    formula: `V7 = V4 + V5`,
+    result: `INIT`,
+    expected: '4',
+    expected2: '5',
     },
     
   ]
@@ -56,7 +71,7 @@ const designations = [
   templateUrl: 'table-basic-example.html',
 })
 export class TableBasicExample {
-  displayedColumns: string[] = ['code', 'formula', 'result'];
+  displayedColumns: string[] = ['code', 'formula', 'result', 'expected', 'expected2'];
   dataSource = designations;
   parser = math.parser();
 
@@ -72,7 +87,7 @@ export class TableBasicExample {
         leftToDo.push(d)
       }
     })
-    
+
     if(occurence > 10) { 
       return leftToDo 
       }
@@ -84,8 +99,24 @@ export class TableBasicExample {
   }
 
   refresh = () => {
+    console.log(this.evaluate(this.shuffle(this.dataSource)))
+  }
 
-    console.log(this.evaluate(this.dataSource))
+  set1 = () => 
+  {
+    this.dataSource.find( d => d.code === 'V1')!.formula = `V1 = 1`;
+    this.refresh()
+  }
+
+  set2 = () => 
+  {
+    this.dataSource.find( d => d.code === 'V1')!.formula = `V1 = 2`;
+    this.refresh()
+  }
+
+  shuffle = (array: any[]) => {
+    const shuffled = array.sort(() => Math.random() - 0.5);
+    return [...shuffled];
   }
 }
 
